@@ -1,5 +1,6 @@
 import redis
 import ast
+import csv
 import MySQLdb
 from config import Config
 
@@ -27,6 +28,17 @@ def get_skills_from_call(msg):
 
     return skills
 
+def get_tenants_from_csv(csv_file):
+    tenants = {}
+    csv_file = open(csv_file)
+    spamreader = csv.reader(csv_file, delimiter=',', quotechar='\'')
+
+    spamreader.next()
+    for row in spamreader:
+        tenants[row[0]] = row[5]
+
+    return tenants
+
 def get_possible_agents(call_skills):
     skilled_outbound_agents = []
     skilled_inbound_agents = []
@@ -40,17 +52,19 @@ def get_possible_agents(call_skills):
         agent_skills = set(agent['skills'].split('|'))
         if set(call_skills).issubset(agent_skills):
             if agent['type'] == 'outbound':
-                skilled_outbound_agents.append(agent['name'])
+                skilled_outbound_agents.append({'name': agent['name'], 'tenant': agent['tenant']})
             elif agent['type'] == 'inbound' and agent['status'] == state_available:
-                skilled_inbound_agents.append(agent['name'])
+                skilled_inbound_agents.append({'name': agent['name'], 'tenant': agent['tenant']})
 
     return {'outbound': skilled_outbound_agents, 'inbound': skilled_inbound_agents}
 
-def set_acq_move(db, agents_to_move):
+def set_acq_move(db, agents_to_move, tenants):
     cursor = db.cursor()
-    parsed_agents = ','.join("'%s'" % agent for agent in agents_to_move)
-    import ipdb; ipdb.set_trace()
-    cursor.execute("UPDATE users SET manual_dial_campaign='%s' WHERE name in (%s)" % ('Dev3Home', parsed_agents))
+    for agent in agents_to_move:
+        agent = agent['name']
+        tenant = tenants[agent['tenant']]
+        cursor.execute("UPDATE users SET manual_dial_campaign='%s' WHERE name='%s'" % (tenant, agent))
+
     db.commit()
 
 def start_call_listener():
@@ -58,6 +72,7 @@ def start_call_listener():
     redis_subscr = redis.StrictRedis(host=redis_pub_host, port=redis_pub_port, db=redis_pub_db)
     subscription = redis_subscr.pubsub()
     subscription.subscribe(redis_pub_topic)
+    tenants = get_tenants_from_csv(config.local_csv.tenants)
     db = MySQLdb.connect(
         host=config.acq_mysql.host,
         user=config.acq_mysql.user,
@@ -72,6 +87,6 @@ def start_call_listener():
             inbound_agents = skilled_agents['inbound']
             if len(inbound_agents) == 0:
                 print "skills: %s, outbound agents: %s" % (call_skills, outbound_agents)
-                set_acq_move(db, outbound_agents)
+                set_acq_move(db, outbound_agents, tenants)
 
 start_call_listener()
