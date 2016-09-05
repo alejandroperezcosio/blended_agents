@@ -1,0 +1,15 @@
+name,tenant,campaign,online,skills
+Dev1EnglishQueue,Dev1,Dev1English,1,DevSkill1|English
+Dev1SpanishQueue,Dev1,Dev1Spanish,1,DevSkill1|Spanish
+Dev2BlueQueue,Dev2,Dev2Blue,1,DevSkill2|Blue
+Dev2GreenQueue,Dev2,Dev2Green,1,DevSkill2|Green
+Dev2PinkQueue,Dev2,Dev2Pink,1,DevSkill2|Pink
+Dev2OtherQueue,Dev2,Dev2Other,1,DevSkill2
+Dev3BlueQueue,Dev3,Dev3Blue,1,DevSkill2|Blue
+Dev3GreenQueue,Dev3,Dev3Green,1,DevSkill2|Green
+Dev3PinkQueue,Dev3,Dev3Pink,1,DevSkill2|Pink
+Dev3OtherQueue,Dev3,Dev3Other,1,DevSkill2
+Dev3EnglishQueue,Dev3,Dev3English,1,DevSkill1|English
+Dev3SpanishQueue,Dev3,Dev3Spanish,1,DevSkill1|Spanish
+TriIB2English,TriangleIB2,TriangleIB2English,1,DevSkill1|English
+TriIB2Spanish,TriangleIB2,TriangleIB2Spanish,1,DevSkill1|Spanish

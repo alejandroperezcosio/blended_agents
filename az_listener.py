@@ -8,7 +8,7 @@ from config import Config
 
 config = Config(file('conf.cfg'))
 
-csv_file = config.csv.file
+csv_file = config.local_csv.file
 
 socket_host = config.msg_socket.host
 socket_port = config.msg_socket.port

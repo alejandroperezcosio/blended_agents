@@ -1,0 +1,5 @@
+name,ccsystem,gemip,gemport,callip,homecampaign
+Dev1,sytel01,208.64.5.195,6502,208.64.5.201,Dev1Home
+Dev2,sytel01,208.64.5.195,6502,208.64.5.201,Dev2Home
+Dev3,sytel01,208.64.5.195,6502,208.64.5.201,Dev3Home
+TriangleIB2,sytel01,208.64.5.183,6502,208.64.5.182,TriangleIB2LoginHere
