@@ -95,4 +95,4 @@ def start_call_listener():
                 set_acq_move(db, redis_azs, outbound_agents, tenants)
 
 
-# start_call_listener()
+start_call_listener()
