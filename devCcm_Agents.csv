@@ -1,0 +1,66 @@
+agent_id,agent_name,tenant,campaigns,skills,score,supervisor
+dev1eng1,dev1eng1,Dev1,Dev1English,DevSkill1|English,5,Bob
+dev1eng2,dev1eng2,Dev1,Dev1English,DevSkill1|English,5,Bob
+dev1spa1,dev1spa1,Dev1,Dev1Spanish,DevSkill1|Spanish,10,Bob
+dev1spa2,dev1spa2,Dev1,Dev1Spanish,DevSkill1|Spanish,5,Alice
+dev1engspa1,dev1engspa1,Dev1,Dev1English|Dev1Spanish,DevSkill1|English|Spanish,5,Alice
+dev1engspa2,dev1engspa2,Dev1,Dev1English|Dev1Spanish,DevSkill1|English|Spanish,5,Alice
+dev2blue1,dev2blue1,Dev2,Dev2Blue,DevSkill2|Blue,5,Charlie
+dev2blue2,dev2blue2,Dev2,Dev2Blue,DevSkill2|Blue,5,Charlie
+dev2green1,dev2green1,Dev2,Dev2Green,DevSkill2|Green,5,Charlie
+dev2green2,dev2green2,Dev2,Dev2Green,DevSkill2|Green,5,Charlie
+dev2pink1,dev2pink1,Dev2,Dev2Pink,DevSkill2|Pink,5,Dave
+dev2pink2,dev2pink2,Dev2,Dev2Pink,DevSkill2|Pink,5,Dave
+dev2greenblue,dev2greenblue,Dev2,Dev2Green|Dev2Blue,DevSkill2|Green|Blue,5,Dave
+dev2pinkblue,dev2pinkblue,Dev2,Dev2Pink|Dev2Blue,DevSkill2|Pink|Blue,5,Dave
+dev2other,dev2other,Dev2,Dev2Other,DevSkill2,5,Dave
+dev3eng,dev3eng,Dev3,Dev3English,DevSkill1|English,5,Ed
+dev3spa,dev3spa,Dev3,Dev3Spanish,DevSkill1|Spanish,10,Ed
+dev3engspa,dev3engspa,Dev3,Dev3English|Dev3Spanish,DevSkill1|English|Spanish,5,Ed
+dev3blue,dev3blue,Dev3,Dev3Blue,DevSkill2|Blue,5,Ed
+dev3green,dev3green,Dev3,Dev3Green,DevSkill2|Green,5,Fred
+dev3pink,dev3pink,Dev3,Dev3Pink,DevSkill2|Pink,5,Fred
+dev3pinkgreen,dev3pinkgreen,Dev3,Dev3Pink|Dev3Green,DevSkill2|Pink|Green,5,Fred
+John_Denver,John_Denver,Dev1,Dev1English,DevSkill1|English,5,Alice
+Kate_Earl,Kate_Earl,Dev1,Dev1English,DevSkill1|English,5,Alice
+Selena_Gomez,Selena_Gomez,Dev1,Dev1English,DevSkill1|English,5,Alice
+Emmylou_Harris,Emmylou_Harris,Dev1,Dev1Spanish,DevSkill1|English,5,Alice
+Anne_Hills,Anne_Hills,Dev1,Dev1Spanish,DevSkill1|Spanish,5,Alice
+Nikki_Jean,Nikki_Jean,Dev1,Dev1Spanish,DevSkill1|Spanish,5,Bob
+Alicia_Keys,Alicia_Keys,Dev1,Dev1English|Dev1Spanish,DevSkill1|Spanish,5,Bob
+Jennifer_Lopez,Jennifer_Lopez,Dev1,Dev1English|Dev1Spanish,DevSkill1|Spanish,5,Bob
+Tom_Rush,Tom_Rush,Dev1,Dev1English|Dev1Spanish,DevSkill1|English|Spanish,5,Bob
+Will_Smith,Will_Smith,Dev1,Dev1English|Dev1Spanish,DevSkill1|English|Spanish,5,Bob
+Aaliyah,Aaliyah,Dev2,Dev2Blue,DevSkill2|Blue,5,Charlie
+David_Blue,David_Blue,Dev2,Dev2Blue,DevSkill2|Blue,5,Charlie
+Greg_Brown,Greg_Brown,Dev2,Dev2Green,DevSkill2|Green,5,Charlie
+Vanessa_Carlton,Vanessa_Carlton,Dev2,Dev2Green,DevSkill2|Green,5,Charlie
+Johnny_Cash,Johnny_Cash,Dev2,Dev2Pink,DevSkill2|Pink,5,Charlie
+Frank_Christian,Frank_Christian,Dev2,Dev2Pink,DevSkill2|Pink,5,Dave
+Annie_Clark,Annie_Clark,Dev2,Dev2Green|Dev2Blue,DevSkill2|Green|Blue,5,Dave
+Marc_Cohn,Marc_Cohn,Dev2,Dev2Pink|Dev2Blue,DevSkill2|Pink|Blue,5,Dave
+Shawn_Colvin,Shawn_Colvin,Dev2,Dev2Green|Dev2Pink,DevSkill2|Green|Pink,5,Dave
+Sam_Cooke,Sam_Cooke,Dev2,Dev2Other,DevSkill2,5,Dave
+Pele,Pele,Dev3,Dev1English,DevSkill1|English,5,Ed
+Muhammad_Ali,Muhammad_Ali,Dev3,Dev1Spanish,DevSkill1|Spanish,5,Ed
+Florin,Florin,Dev3,Dev3Green,DevSkill1|Spanish,5,Ed
+Carl_Lewis,Carl_Lewis,Dev3,Dev1English|Dev1Spanish,DevSkill1|English|Spanish,5,Ed
+Usain_Bolt,Usain_Bolt,Dev3,Dev2Blue,DevSkill2|Blue,5,Ed
+Lionel_Messi,Lionel_Messi,Dev3,Dev3Green,DevSkill2|Green,5,Ed
+Michael_Jordan,Michael_Jordan,Dev3,Dev2Pink,DevSkill2|Pink,5,Fred
+Babe_Ruth,Babe_Ruth,Dev3,Dev2Green|Dev2Blue,DevSkill2|Green|Blue,5,Fred
+Tiger_Woods,Tiger_Woods,Dev3,Dev2Pink|Dev2Blue,DevSkill2|Pink|Blue,5,Fred
+Aryton_Senna,Aryton_Senna,Dev3,Dev2Green|Dev2Pink,DevSkill2|Green|Pink,5,Fred
+Magic_Johnson,Magic_Johnson,Dev3,Dev2Other,DevSkill2,5,Fred
+Thanh Harr,Thanh Harr,DTAOut,DevOutDev3,,5,Rafael
+Tommie Reiter,Tommie Reiter,DTAOut,DevOutDev3,,5,Rafael
+AutoVirtual_d92518c6d09c4129b0820a1fae16ad02_1,AutoVirtual_d92518c6d09c4129b0820a1fae16ad02_1,DTAOut,DevOutDev3,,5,Rafael
+AutoVirtual_d92518c6d09c4129b0820a1fae16ad02_2,AutoVirtual_d92518c6d09c4129b0820a1fae16ad02_2,DTAOut,DevOutDev3,,5,Rafael
+AutoVirtual_d92518c6d09c4129b0820a1fae16ad02_3,AutoVirtual_d92518c6d09c4129b0820a1fae16ad02_3,DTAOut,DevOutDev3,,5,Rafael
+dcca3c05-58e8-4949-9145-4436a3a1de4c,Indiana Jones,TriangleIB2,TriangleIB2English|TriangleIB2Spanish,DevSkill1|English|Spanish,5,Rafael
+6dd9019b-16e7-462e-9197-e90840ea1ee4,James Bond,TriangleIB2,TriangleIB2English|TriangleIB2Spanish,DevSkill1|English|Spanish,5,Rafael
+c150322a-3a9f-4f9c-8d94-c68db4a8325b,Vito Corleone,TriangleIB2,TriangleIB2English|TriangleIB2Spanish,DevSkill1|English|Spanish,5,Rafael
+24500d18-836d-4bcc-b04b-b6abcfb6dfea,Forrest Gump,TriangleIB2,TriangleIB2English|TriangleIB2Spanish,DevSkill1|English|Spanish,5,Rafael
+60500d60-8360-4b60-b060-b6abcfb6df60,Tony Montana,TriangleIB2,TriangleIB2English|TriangleIB2Spanish,DevSkill1|English|Spanish,5,Rafael
+2000,2000,Dev3,Dev3English,DevSkill1|English,5,Alejandro
+2001,2001,Dev3,Dev3Spanish,DevSkill1|Spanish,5,Alejandro
