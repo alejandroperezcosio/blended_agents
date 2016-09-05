@@ -8,7 +8,7 @@ from config import Config
 
 config = Config(file('conf.cfg'))
 
-csv_file = config.local_csv.file
+csv_file = config.local_csv.agents
 
 socket_host = config.msg_socket.host
 socket_port = config.msg_socket.port
@@ -81,7 +81,6 @@ def start_az_listener(socket_msg_size):
             if az.startswith('AZ'):
                 agent = get_agent_information(az, agents_skills)
                 if agent != {}:
-                    import ipdb; ipdb.set_trace()
                     r.hmset(redis_key, {agent['name']: agent})
                     print agent
 
