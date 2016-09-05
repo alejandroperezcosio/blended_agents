@@ -7,15 +7,15 @@ from config import Config
 
 config = Config(file('conf.cfg'))
 
-redis_pub_host = config.redis_pub.host
-redis_pub_port = config.redis_pub.port
-redis_pub_db = config.redis_pub.db
-redis_pub_topic = config.redis_pub.topic
+redis_calls_host = config.redis_calls.host
+redis_calls_port = config.redis_calls.port
+redis_calls_db = config.redis_calls.db
+redis_calls_topic = config.redis_calls.topic
 
-redis_agents_host = config.redis_agents.host
-redis_agents_port = config.redis_agents.port
-redis_agents_db = config.redis_agents.db
-redis_agents_key = config.redis_agents.key
+redis_azs_host = config.redis_azs.host
+redis_azs_port = config.redis_azs.port
+redis_azs_db = config.redis_azs.db
+redis_azs_key = config.redis_azs.key
 
 
 def get_skills_from_call(msg):
@@ -39,12 +39,11 @@ def get_tenants_from_csv(csv_file):
 
     return tenants
 
-def get_possible_agents(call_skills):
+def get_skilled_agents(call_skills, redis_azs):
     skilled_outbound_agents = []
     skilled_inbound_agents = []
     state_available = '3'
-    redis_agents = redis.StrictRedis(host=redis_agents_host, port=redis_agents_port, db=redis_agents_db)
-    agents = redis_agents.hgetall(redis_agents_key)
+    agents = redis_azs.hgetall(redis_azs_key)
 
     mapped_agents = map(ast.literal_eval, agents.values())
 
@@ -58,20 +57,26 @@ def get_possible_agents(call_skills):
 
     return {'outbound': skilled_outbound_agents, 'inbound': skilled_inbound_agents}
 
-def set_acq_move(db, agents_to_move, tenants):
+def set_acq_move(db, redis_azs, agents_to_move, tenants):
     cursor = db.cursor()
-    for agent in agents_to_move:
-        agent = agent['name']
-        tenant = tenants[agent['tenant']]
-        cursor.execute("UPDATE users SET manual_dial_campaign='%s' WHERE name='%s'" % (tenant, agent))
+    for agent_dict in agents_to_move:
+        agent = agent_dict['name']
+        home_campaign = tenants[agent_dict['tenant']]
 
-    db.commit()
+        cursor.execute("UPDATE users SET manual_dial_campaign='%s' WHERE name='%s'" % (home_campaign, agent))
+        db.commit()
+
+        redis_agent = ast.literal_eval(redis_azs.hget(redis_azs_key, agent))
+        redis_agent['manual_dial_campaign'] = home_campaign
+        redis_azs.hmset(redis_azs_key, {az_agent['name']: redis_agent})
 
 def start_call_listener():
     print 'start listening calls'
-    redis_subscr = redis.StrictRedis(host=redis_pub_host, port=redis_pub_port, db=redis_pub_db)
-    subscription = redis_subscr.pubsub()
-    subscription.subscribe(redis_pub_topic)
+    redis_calls_connection = redis.StrictRedis(host=redis_calls_host, port=redis_calls_port, db=redis_calls_db)
+    calls_subscription = redis_calls_connection.pubsub()
+    calls_subscription.subscribe(redis_calls_topic)
+    redis_azs = redis.StrictRedis(host=redis_azs_host, port=redis_azs_port, db=redis_azs_db)
+
     tenants = get_tenants_from_csv(config.local_csv.tenants)
     db = MySQLdb.connect(
         host=config.acq_mysql.host,
@@ -79,14 +84,15 @@ def start_call_listener():
         passwd=config.acq_mysql.passwd,
         db=config.acq_mysql.db)
 
-    for msg in subscription.listen():
+    for msg in calls_subscription.listen():
         call_skills = get_skills_from_call(msg)
         if call_skills not in [[], ""]:
-            skilled_agents = get_possible_agents(call_skills)
+            skilled_agents = get_skilled_agents(call_skills, redis_azs)
             outbound_agents = skilled_agents['outbound']
             inbound_agents = skilled_agents['inbound']
             if len(inbound_agents) == 0:
                 print "skills: %s, outbound agents: %s" % (call_skills, outbound_agents)
-                set_acq_move(db, outbound_agents, tenants)
+                set_acq_move(db, redis_azs, outbound_agents, tenants)
 
-start_call_listener()
+
+# start_call_listener()

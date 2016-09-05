@@ -16,10 +16,10 @@ socket_tenants = config.msg_socket.tenants
 socket_size = config.msg_socket.size
 sock = socket.socket()
 
-redis_host = config.redis_agents.host
-redis_port = config.redis_agents.port
-redis_db = config.redis_agents.db
-redis_key = config.redis_agents.key
+redis_azs_host = config.redis_azs.host
+redis_azs_port = config.redis_azs.port
+redis_azs_db = config.redis_azs.db
+redis_azs_key = config.redis_azs.key
 
 
 def connect_socket(host, port, tenants):
@@ -71,8 +71,8 @@ def start_az_listener(socket_msg_size):
     agents_skills = get_agents_skills_from_csv(csv_file)
     connect_socket(socket_host, socket_port, socket_tenants)
 
-    r = redis.StrictRedis(host=redis_host, port=redis_port, db=redis_db)
-    r.delete(redis_key)
+    redis_azs_connection = redis.StrictRedis(host=redis_azs_host, port=redis_azs_port, db=redis_azs_db)
+    redis_azs_connection.delete(redis_azs_key)
 
     while 1:
         msg = sock.recv(socket_msg_size)
@@ -81,7 +81,8 @@ def start_az_listener(socket_msg_size):
             if az.startswith('AZ'):
                 agent = get_agent_information(az, agents_skills)
                 if agent != {}:
-                    r.hmset(redis_key, {agent['name']: agent})
+                    redis_azs_connection.hmset(redis_azs_key, {agent['name']: agent})
                     print agent
+
 
 start_az_listener(socket_size)
