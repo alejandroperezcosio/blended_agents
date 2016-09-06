@@ -68,7 +68,7 @@ def set_acq_move(db, redis_azs, agents_to_move, tenants):
 
         redis_agent = ast.literal_eval(redis_azs.hget(redis_azs_key, agent))
         redis_agent['manual_dial_campaign'] = home_campaign
-        redis_azs.hmset(redis_azs_key, {az_agent['name']: redis_agent})
+        redis_azs.hmset(redis_azs_key, {redis_agent['name']: redis_agent})
 
 def start_call_listener():
     print 'start listening calls'
