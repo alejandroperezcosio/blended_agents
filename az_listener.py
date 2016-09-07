@@ -1,8 +1,8 @@
-import socket
-import redis
 import csv
-import random
+import sys
 import redis
+import socket
+import random
 from config import Config
 
 
@@ -85,4 +85,8 @@ def start_az_listener(socket_msg_size):
                     print agent
 
 
-start_az_listener(socket_size)
+try:
+    start_az_listener(socket_size)
+except KeyboardInterrupt:
+    print "\nBye!"
+    sys.exit(0)

@@ -1,6 +1,8 @@
-import redis
 import ast
 import csv
+import sys
+import redis
+import signal
 import MySQLdb
 from config import Config
 
@@ -95,4 +97,8 @@ def start_call_listener():
                 set_acq_move(db, redis_azs, outbound_agents, tenants)
 
 
-start_call_listener()
+try:
+    start_call_listener()
+except KeyboardInterrupt:
+    print "\nBye!"
+    sys.exit(0)
